@@ -139,6 +139,10 @@ Felhőben tárolás:
 	
 "Üdv! Én a GitHub felületén lettem írva. Reméhetőleg már a gépeden vagyok."
 
+	Ha szeretnénk egy másik gépre klónozni a repo-t akkor csak nyisssuk meg a Bash-et és miután kiválasztottuk a helyét írjuk be ezt:
+
+	git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY
+
 	
 
 
