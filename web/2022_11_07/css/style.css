@@ -1,0 +1,99 @@
+html {
+    background-color: rgb(56, 56, 56);
+}
+
+body {
+    margin: 0px;
+    line-height: 1.15;
+}
+
+.banner {
+    background-color: rgb(102, 102, 102);
+    overflow: hidden;
+    display: flex;
+    position: fixed;
+    height: 100px;
+}
+
+.banner img {
+    height: 5vw;
+    min-height: 70px;
+    max-height: 80px;
+}
+
+.banner td {
+    width: 50vw;
+}
+
+.banner h1 {
+    font-size: clamp(10px, 15px + 1.4vw, 70px);
+}
+
+.break{
+    height: 130px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.images tr, th {
+    height: 35vw;
+    width: 25vw;
+}
+
+.images table {
+    margin-left: 5vw;
+}
+
+.images img {
+    max-width: 100%;
+    height: auto;
+}
+
+.images p {
+    color: #AAAAAA;
+    font-size: clamp(10px, 5px + 1vw, 60px);
+}
+
+@media only screen and (max-width : 1060px) {
+    .images p{
+        display:none;
+    }
+}
+
+.ad {
+    float: right;
+    margin-top: 10vw;
+}
+
+.ad img {
+    width: 15vw;
+}
+
+.big {
+    float: left;
+    width: 80vw;
+    max-width: 700px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    text-align: center;
+    color: #AAAAAA;
+    line-height: 1.4;
+}
+
+.details {
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}

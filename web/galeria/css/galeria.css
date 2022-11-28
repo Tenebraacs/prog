@@ -1,0 +1,49 @@
+body {
+    background-color: black;
+}
+
+.banner {
+    background-image: url('../pics/galeria_banner.jpg');
+    background-position: bottom;
+    background-size: contain;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #1e1f1f;
+}
+
+.banner_text {
+    font-size: 100px;
+    text-align: center;
+    vertical-align: middle;
+    color: yellow;
+    text-shadow: 3px 3px black;
+}
+
+.home {
+    float: left;
+    height: 50px;
+    margin: 20px;
+    overflow: hidden;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr, th {
+    height: 240px;
+    width: 500px;
+}
+
+.full_pics {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 700px;
+    margin-top: 40px;
+    overflow: hidden;
+}

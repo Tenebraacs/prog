@@ -1,0 +1,24 @@
+html-css feladatok
+******************
+1.) css ismétlés: "link"
+	- CSS Tutorial
+	- CSS Advanced
+	- CSS Responsive
+	- CSS Grid
+
+2.) készíts egy html-css projektet:
+	- egyedi design
+	- külső stílus használata
+	- responsivitás
+	- az oldalon egy márka bemutatását tedd meg, képekkel
+	- banner 
+	- logó
+	- GIMP használat
+	- 12 db bélyegkép (egyforma méretű)
+		- rákattintva jelenik meg nagyméretben
+	- az oldalt pozicionáld balra (containers, table, etc.)
+	- a jobb oldalon egy reklámsáv, az oldal desigjához illő reklámok
+	- mentsd a projekted a 20221107 mappába, amit beadsz ha készen vagy a
+	  munkádat "monogram_20221107.zip" állományként
+	  töltsd fel a Teams-be/10D-SZ1-IKT csoportba a
+	  fájlok/!bead/2022-11-07" mappába

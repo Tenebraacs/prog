@@ -1,0 +1,8 @@
+D:\10D_PA_KZ\cs\2022_10_24\szamolo\szamolo\bin\Debug\szamolo.exe.config
+D:\10D_PA_KZ\cs\2022_10_24\szamolo\szamolo\bin\Debug\szamolo.exe
+D:\10D_PA_KZ\cs\2022_10_24\szamolo\szamolo\bin\Debug\szamolo.pdb
+D:\10D_PA_KZ\cs\2022_10_24\szamolo\szamolo\obj\Debug\szamolo.csproj.AssemblyReference.cache
+D:\10D_PA_KZ\cs\2022_10_24\szamolo\szamolo\obj\Debug\szamolo.csproj.SuggestedBindingRedirects.cache
+D:\10D_PA_KZ\cs\2022_10_24\szamolo\szamolo\obj\Debug\szamolo.csproj.CoreCompileInputs.cache
+D:\10D_PA_KZ\cs\2022_10_24\szamolo\szamolo\obj\Debug\szamolo.exe
+D:\10D_PA_KZ\cs\2022_10_24\szamolo\szamolo\obj\Debug\szamolo.pdb

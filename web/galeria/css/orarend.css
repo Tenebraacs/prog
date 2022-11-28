@@ -1,0 +1,25 @@
+body {
+    background-image: url('../pics/tech_bg.jpg');
+    background-size: cover;
+}
+
+table, tr, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 1000px;
+    height: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: x-large;
+    background-color: #d9d9d9;
+}
+
+td {
+    text-align: center;
+}
+
+h1 {
+    text-shadow: 2px 2px #c7c7c7;
+    text-align: center;
+    font-size: 65px;
+}
