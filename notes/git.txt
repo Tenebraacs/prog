@@ -112,11 +112,11 @@ Felhőben tárolás:
 				/\
 			'Ez egy név, hogy mit adunk hozzá az online repo-hoz'
 
-	git branch -m master
+	git branch -m main
 			    /\
 			'Ezzel kiválasztottuk a master Branch-et'
 
-	git push -u origin master
+	git push -u origin main
 				/\
 			 'Ezzel feltöltöttük az 'origin'-t a master Branch-be'
 	-----------------------------------------------------
@@ -128,7 +128,7 @@ Felhőben tárolás:
 				/\
 			'Ez egy név, hogy mit adunk hozzá az online repo-hoz'
 
-	git branch -m master
+	git branch -m main
 			    /\
 			'Ezzel kiválasztottuk a master Branch-et'
 	
