@@ -136,6 +136,8 @@ Felhőben tárolás:
 	     /\
 	   'Ezzel kérjük le a változásokat'
 	-----------------------------------------------------
+	
+"Üdv! Én a GitHub felületén lettem írva. Reméhetőleg már a gépeden vagyok."
 
 	
 
