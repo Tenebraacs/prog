@@ -1,0 +1,152 @@
+A Git Bash-ben dolgozom.
+************************
+
+Kezdő parancsok:
+----------------
+
+	git config --global user.name "Karácsony Zoltán"  -->  'Ezzel megadom a nevem'
+	
+	git config --global user.email karacsony.zoltan@blathy.info  -->  'Ezzel megadom az e-mail címem'
+
+	cd c:/...  -->  'Ezzel belépek egy mappába ami már git vagy git-té akarom alakítani'
+	
+	git int  -->  'Ezzel lesz a mappa egy git'
+
+	git status  -->  'A git jelenlegi állapotát kérem le'
+
+
+Stage és commit:
+****************
+
+A git-ben 3 állapot van:
+------------------------
+
+	- Még dolgozom rajta (nincs a git-ben)
+
+	- Staging  -->  'Itt készítem elő a fájljaimat a 'Commit'-hoz, ehhez tudok hozzá adni és elvenni'
+
+	- Commit  -->  'Itt rögzítem az adott verziót, mentem a változásokat.'
+
+Parancsok:
+----------
+
+	git add fájlnév.txt  -->  'ezzel a paranccsal adom hozzá a fájlomat (vagy a fájlommal történt műveletet) a 'Stage'-hez.'
+		  --all        -->  'ezzel a (fájl helyett) az összes nem hozzá adott fájlt hozzá tudom adni a 'Stage'-hez'
+
+	git restore --staged fájlnév.txt  -->  'Ezzel a paranccsal kivehetjük a 'Stage'-ből az adott fájlunkat'
+
+	git commit -m "Az én kommentem"  -->  'Ezzel tudom commit-elni a 'Stage'-en szereplő dolgokat'
+
+	git commit -a -m "Az én kommentem"  -->  'Ezzel egyenesen a 'Még dolgozom rajta' állatoból a 'Commit' állapotba kerülnek a változások'
+
+	git diff  --> 'Megmutatja a változásokat a még nem Stage-be helyezett fájlokat'
+
+
+Fájl műveletek:
+***************
+
+	Ha törlünk egy fájlt (akár paranccsal akár fájlkezelőben) akkor azt a git-el vissza tudjuk állítani
+
+Parancsok:
+----------
+
+	git rm "fájlnév.txt"  --> 'Törli a fájlt'
+
+	git mv "fájlnév.txt" "újnév.txt"  --> 'Átnevezi a fájlt'
+	
+	git restore "fájlnév.txt"  --> 'Visszavonja a műveletet'
+
+
+Git log:
+********
+
+	A git-ben lehetőségünk van az összes változást log-olni (Commit) és vissza nézni
+
+Parancsok:
+----------
+
+	git log            -->  'Megjeleníti az eddigi Commmit-okat és változásokat'
+		  --oneline  -->  'Egy sorban, tömören írja a változásokat'
+
+	git commit -m "Az én kommentem" --amend  -->  'Felülírja az utolsó Commit-et'
+
+	git log -p  -->  'Ezzel a paranccsal egy részletes módba lépek be. Látom az eddig változások összes részletét. A fel és le nyilakkal navigálok és a 'Q'-val lépek ki'
+
+	git reset <commit id>  -->  'Ezzel a paranccsal a kiválasztott verzióra tudom vissza állítani a git-emet'
+
+	git rebase -i --root  --> 'Ezzel részletesebben meg tudom változtatni az előzményeket, NEM HASZNÁLD NEM TUDOM MI EZ'
+
+
+Git Branch-ek:
+**************
+
+	A 'Branch'-eket arra használjuk, hogy különböző ágakon tudjunk dolgozni, anélkül, hogy az eredeti git-be belepiszkálnánk.
+
+Parancsok:
+----------
+	
+	git branch <branch név>  -->  'Létrehozunk egy új Branch-et'
+
+	git branch  -->  'Megnézzük, hogy melyik Branch-ben vagyunk (a *-al jelölt az aktív)'
+
+	git switch <branch név>  --> 'Belép a Branch-be. Az itt végzett változtatások csak az adott Branch-re fognak vonatkozni, legyen szó Commit-ról vagy szimpla módosításról, te azt nem fogod látni a master Branch-ben. Ebben a slave Branch-ben az fog szerepelni ami a master Branch-ben volt a létrehozásakor)'
+
+	git merge -m "Az én kommentem" <branch név>  --> 'A kívánt Branch-et beleolvasztjuk a master Branch-be'
+
+	git branch -d <branch név>  -->  'Törli a Branch-et'
+
+	!!!FONTOS!!!  -->  'Ha olvasztás közben konfliktus lép fel akkor egy ideiglenes Branch-be lépünk és ott a problémás fájlban a git fel fog ajánlani módosításokat, hogy melyiket tartsuk meg. (Ez csak akkor lép fel ha a master Branch útközben módosúlt.) Ha eldöntöttük, hogy melyik Branch módosítását tartjuk meg akkor a változtatást Commit-elni kell.'
+
+
+Felhőben tárolás:
+*****************
+
+	A git önmagában használható lokális gépen verzió követésre de csak akkor használjuk ki a teljes potenciálját ha a felhőben is tároljuk adatainkat. Erre a GitHub a legjobb és leghasználtabb megoldás.
+
+	Először létre kell hoznunk egy online Repository-t, hogy oda fel tudjuk tölteni a dolgokat. Ez nagyon egyszerű mert a GitHub végigvezet a lépéseken.
+
+	Utána a lokális fájlokat fel kell töltenünk az online Repository-ba. Erre a következő parancsokat használjuk:
+
+	-----------------------------------------------------
+	git remote add origin <GitHub link>
+				/\
+			'Ez egy név, hogy mit adunk hozzá az online repo-hoz'
+
+	git branch -m master
+			    /\
+			'Ezzel kiválasztottuk a master Branch-et'
+
+	git push -u origin master
+				/\
+			 'Ezzel feltöltöttük az 'origin'-t a master Branch-be'
+	-----------------------------------------------------
+
+	Ezzel feltöltöttük a master Branch-ünket a GitHub-ra. És így tudjuk letölteni:
+	
+	-----------------------------------------------------
+	git remote add origin <GitHub link>
+				/\
+			'Ez egy név, hogy mit adunk hozzá az online repo-hoz'
+
+	git branch -m master
+			    /\
+			'Ezzel kiválasztottuk a master Branch-et'
+	
+	git pull
+	     /\
+	   'Ezzel kérjük le a változásokat'
+	-----------------------------------------------------
+
+	
+
+
+
+
+
+
+
+
+
+
+
+

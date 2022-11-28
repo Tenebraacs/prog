@@ -119,10 +119,16 @@ while exit == False:
                 elif change_choice == "nem":
                     change_exit = True
                 else:
-                    print("A megadott opció helytelen")
-                
+                    print("A megadott opció helytelen")               
     elif choice == "clear":
-        x = 10
+        print("Biztosan ki akarja törölni az egész lista tartalmát? (igen/nem)")
+        clear_choice = input(">  ")
+        if clear_choice == "igen":
+            nazalist.clear()
+        elif clear_choice == "nem":
+            pass
+        else:
+            print("A megadott opció helytelen")
     elif choice == "exit":
         exit = True
     else:
