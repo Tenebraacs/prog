@@ -90,6 +90,12 @@ lista1 = []
 for x in range(listahossz):
     lista1.append(random.randint(1, 10))
 
+print("A lista hossza: " + str(len(lista1)))
+
+lista1.sort()
+print("A lista legkisebb száma: " + str(lista1[0]))
+print("A lista legkisebb száma: " + str(lista1[len(lista1) - 1]))
+
 
 #8. feladat
 print("8.) Írj programot, amely bekér 8 osztályzatot, eltárolja őket egy listában, majd kiírja őket egy sorban, vesszővel elválasztva. Új sorokba kiírja az összegüket, szorzatukat, átlagukat (két tizedes jegyre kerekítve)!")
@@ -101,7 +107,7 @@ szorzat = 0
 first = True
 
 for j in range(7):
-    jegy += input("Adjon meg egy osztályzatot: ")
+    jegy += int(input("Adjon meg egy osztályzatot: "))
 
 for o in jegy:
     ir += str(o) + ", "
@@ -120,3 +126,22 @@ for o in jegy:
 print(szorzat)
 
 print(round(osszeg / len(jegy), 2))
+
+
+#9. feladat
+print("9.) Kérj be a felhasználótól egy óra:perc:másodperc alakú időt, és írd ki a képernyőre, hogy a nap eleje, vagyis 0:0:0 óta hány másodperc telt el!")
+
+ido = input("Írja be a jelnlegi időt! (óra:perc:másodperc) ")
+
+mp = 0
+temp = ""
+temp2 = 2
+
+for i in ido:
+    if i != ":":
+        temp += i
+    else:
+        int(temp)
+        mp += temp2 * (60 * temp)
+        str(temp)
+        temp = ""
