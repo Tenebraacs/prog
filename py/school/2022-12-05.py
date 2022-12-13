@@ -107,15 +107,14 @@ szorzat = 0
 first = True
 
 for j in range(7):
-    jegy += int(input("Adjon meg egy osztályzatot: "))
+    jegy.append(int(input("Adjon meg egy osztályzatot: ")))
 
 for o in jegy:
     ir += str(o) + ", "
-print(ir[:-2])
+print(f"A jegyeid: {ir[:-2]}")
 
 for o in jegy:
     osszeg += o
-print(osszeg)
 
 for o in jegy:
     if first:
@@ -123,9 +122,8 @@ for o in jegy:
         first = False
     else:
         szorzat *= o
-print(szorzat)
 
-print(round(osszeg / len(jegy), 2))
+print(f"Jegyek összege: {str(osszeg)}   Az osztályzatok szorzata: {str(szorzat)}    Az átlag: {str(round(osszeg / len(jegy), 2))}")
 
 
 #9. feladat
@@ -141,7 +139,13 @@ for i in ido:
     if i != ":":
         temp += i
     else:
-        int(temp)
-        mp += temp2 * (60 * temp)
-        str(temp)
+        temp = int(temp)
+        if temp2 == 2:
+            mp += 3600 * temp
+        if temp2 == 1:
+            mp += 60 * temp
+        if temp2 == 0:
+            mp += temp
         temp = ""
+        temp2 -= 1
+print(mp)
