@@ -1,3 +1,6 @@
+import random
+import string
+
 exit = False
 while exit == False:
     print("----Válasszon a feladatok közül!----")
@@ -10,6 +13,7 @@ while exit == False:
     print("7.) Kérj be egy mondatot, cseréld le az ékezetes betűket az ékezet nélküli párjukra, ill. a hosszú í-t i-re, írasd ki az eredményt! Cseréld le a kisbetűket nagybetűkre, és azt is írasd ki! Töröld a nagybetűs verzióból az írásjeleket és a szóközöket, és az eredményt írasd ki a képernyőre!")
     print("8.) Kérj be a felhasználótól egy szót és döntsd el, hogy tartalmaz-e magánhangzót! Amennyiben tartalmaz, a program írja ki a „Van benne magánhangzó.” szöveget, különben azt, hogy „Nincs benne magánhangzó.” Figyelj az ékezetes kis- és nagybetűkre is!")
     print("09.) Tanulmányozd a print() használatának eseteit, és jelenítsd meg print függvénnyel 20 és 7 hányadosát a lenti minta szerint! Az elválasztók tabulátorok.")
+    print()
     print("Írja be az 'exit' szót a kilépéshez")
     print()
     print("Írja be a választott feladat sorszámát!")
@@ -129,13 +133,62 @@ while exit == False:
         print(f"A(z) {tizenketto}. elem a 12.")
         print()
     elif menu == "6":
-        pass
+        print("A következő sorban egy pénzfeldobás eredményeit fogja látni:")
+        eredmeny = []
+        erme = ["F", "I"]
+        for r in range(5):
+            eredmeny.append(random.choice(erme))
+        kiir = ""
+        for r in eredmeny:
+            kiir += str(r) + ", "
+        print(kiir)
+        print()
+        print("Kérek egy tippet! (F/I)")
+        tip = input(">  ").upper()
+        print()
+        eredmeny2 = random.choice(erme)
+        print(f"Az ön tippje: {tip}     Az eredmény: {eredmeny2}")
+        if tip == eredmeny2:
+            print("Ön eltalálta!")
+        elif tip != eredmeny2 and tip in erme:
+            print("Ön nem találta el!")
+        else:
+            print("Érvénytelen tipp!")
+        print()
     elif menu == "7":
-        pass
+        print("Írja be az átalakítani kívánt mondatot!")
+        mondat = input(">  ")
+        print()
+        ekezet = str.maketrans("ÁáÉéÍíÓóÖöŐőÚúÜüŰű", "AaEeIiOoOoOoUuUuUu")
+        ekezet_nelkul = mondat.translate(ekezet)
+        print(f"A beírt mondat így néz ki ékezetek nélkül: {ekezet_nelkul}")
+        nagybetu = mondat.upper()
+        print(f"A beírt mondat így néz ki ha kicseréljük a kisbetűket nagybetűkre: {nagybetu}")
+        #Az internet szerint az ékezetes betűk is írásjelek, ha ezeket nem akarjuk kivenni akkor az első 2 stringet hagyjuk üresen
+        irasjel = str.maketrans("ÁáÉéÍíÓóÖöŐőÚúÜüŰű", "AaEeIiOoOoOoUuUuUu", "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ ")
+        irasjel_nelkul = nagybetu.translate(irasjel)
+        print(f"A beírt mondat így néz ki az összes írásjel nélkül: {irasjel_nelkul}")
     elif menu == "8":
-        pass
+        maganhangzok = ["Á", "á", "É", "é", "Í", "í", "Ó", "ó", "Ö", "ö", "Ő", "ő", "Ú", "ú", "Ü", "ü", "Ű", "ű", "A", "a", "E", "e", "I", "i", "O", "o", "U", "u"]
+        print("Írd be az ellenőrizendő szót!")
+        szo = input(">  ")
+        print()
+        x = 1
+        for c in szo:
+            if c in maganhangzok:
+                x = 0
+        if x == 1:
+            print("Ebben a szóban nincs magánhanzó!")
+        else:
+            print("Ebben a szóban van magánhangzó!")
+        print()
     elif menu == "9":
-        pass
+        hanyados = 20 / 7
+        hanyados1 = int(hanyados)
+        hanyados2 = "{:.2f}".format(hanyados)
+        hanyados3 = str("{:.2f}".format(hanyados)).zfill(len(str("{:.2f}".format(hanyados))) + 2)
+        hanyados4 = str("{:.4f}".format(hanyados)).zfill(len(str("{:.4f}".format(hanyados))) + 1)
+        print(f"{hanyados1}  {hanyados2}  {hanyados3}  {hanyados4}")
     elif menu == "exit":
         exit = True
     else:
