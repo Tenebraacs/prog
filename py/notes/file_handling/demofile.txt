@@ -1,0 +1,3 @@
+Hello! Üdvözöllek a read_file.txt-ben!
+Ez a fájl csak a tesztelés érdekében született.
+Reméljük érteni fogod a lényegét! :)
