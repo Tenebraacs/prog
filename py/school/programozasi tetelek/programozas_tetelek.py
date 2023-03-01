@@ -43,7 +43,8 @@ print("\n")
 ### =============  ami ket parameterrel rendelkezik: "bemenet", "mod"
 ###                - olvasd be az "input.txt" allomanyt egy listaba
 ###                - ird ki a listaelemek oszeget a kepernyore
-lista = []
+
+
 def osszeg_fajlbol(bemenet, mod):
 
     ### beolvasas, "\n" csereje ","-re, hasitas "," szerint
@@ -60,21 +61,91 @@ print("Az input.txt fajl adatainak osszege:", osszeg_fajlbol("input.txt", "r"))
 print("\n")
         
 
+# 2.) Megszamolas: Adott feltetelek alapjan a tomb
+# ===============  bizonyos elemeit megszamoljuk.
+# pl.: megszamoljuk mennyi negativ szam van a tomben
+#
+# szamlalo = 0
+# ciklus i = 0 .. n - 1
+#   ha t[i] < 0 akkor
+#       szamlalo = szamlalo + 1
+#   ha vege
+# ciklus vege
+# ki szamlalo
 
+print("Megszamolas tetel:\n=================")
 
+# algoritmus szerinti megoldas
+def megszamol_kl(miben, mit):
+        szamlalo = 0
+        for elem in miben:
+            if elem < mit:
+                szamlalo = szamlalo + 1
+        print("Megszamolas algoritmussal: a listaban ", szamlalo, " darab negativ szam van")
 
+megszamol_kl(l,0)
 
-"""
-def osszeg_fajlbol(bemenet, mod):
-    # Olvassuk be az input.txt fájlt listába
-    with open(bemenet, mod) as file:
-        lista = [int(x.strip()) for x in file.readlines()]
-    
-    # Számítsuk ki a lista elemeinek összegét
-    osszeg = sum(lista)
-    
-    # Írjuk ki a képernyőre az összeget
-    print(osszeg)
+# megoldas beepitett fuggvennyel
+def megszamol_fv(miben, mit):
+    darab = miben.count(mit)
+    print("Megszamolas algoritmussal, alapbol korlatos: a listaban ", darab," darab", mit, "-as/es szam van")
 
-osszeg_fajlbol("input.txt", "r") # futtatjuk a fuggvenyt
-"""
+# ez NEM tudja igy megszamolni az osszes negativ/pozitiv szamot
+# csak konkretan az adott szamot
+megszamol_fv(l, -8)
+
+# megoldas beepitett fuggvennyel, kiterjesztett megoldas
+def megszamol_fv_kit(miben):
+    neg_list = [n<0 for n in miben]
+    darab = neg_list.count(True)
+    print("Megszamolas algoritmussal, kiterjesztett megoldas: a listaban ", darab, " darab negativ szam van")
+
+megszamol_fv_kit(l)
+print("\n")
+
+# 3.) Eldontes: Szeretnenk tudni , hogy egy ertek megtalalhato-e egy tomben,
+# ===========   ha igen megallunk a futtatassal
+#
+# van = 0
+# ciklus i = 0 .. n-1
+#   ha tomb[i] = keresett_ertek akkor
+#       van = 1
+#   ha vege
+#   ciklus futtatasanak vege
+# ciklus vege
+
+print("Eldontes tetel:\n===============")
+def eldontes(lst, ker_ertek):
+    van = False
+    for elem in lst:
+        if elem == ker_ertek:
+            van = True
+        break
+    return van
+
+eredmeny = eldontes(l, 18)
+print("A keresett ertek benne van a listaban")
+print("\n")
+
+# 4.) Kivalasztas: Adott elem a tomb
+# ===============  hanyadik helyen van.
+# A kivalasztas tetelt akkor hasznaljuk, ha tudjuk,
+# hogy a keresett erteket tartalmazza a tomb.
+# Ezert azt nem vizsgaljuk, hogy vege van-e a tombnek.
+#
+# i = 0
+# ciklus amig tomb[i] <> ker
+#   i = i + 1
+# ciklus vege
+# ki i + i
+
+# algoritmus szerinti megoldas
+print("Kivalasztas tetel\n==================")
+def kivalasztas(lst):
+    for index,elem in enumerate(lst):
+    #minden pozitiv szam
+        if elem > 0:
+            print("A lsitaban ", index," indexen all a pozitiv szam a lista ", elem,". helyen.")
+
+kivalasztas(l)
+print("\n")
