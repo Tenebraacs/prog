@@ -2,7 +2,7 @@
 
 #A 'Tuple'-re kerek zárójellel hivatkozunk
 tuple1 = ("alma", "banán", "meggy", "alma") #megfigyelhetjük, hogy ebben a lista típusban lehetség van duplikált elemeket megadni
-print(teszt)
+print(tuple1)
 
 #Az egy értékkel rendelkező 'Tuple'-k első értéke után minednképpen kell egy vessző
 tuple2 = ("egy elem",)
