@@ -124,6 +124,13 @@ def SuperBowl (bemenet, mod):
     # 6.) melyik donton volt a legtobb nezo
     max_nezoszam = max(map(int,nezoszam_lista))
     print("A maximalis nezoszam: ", max_nezoszam)
+    max_nezoszam_indexe = 0
+    for index,elem in enumerate(nezoszam_lista):
+        if elem == str(max_nezoszam):
+            max_nezoszam_indexe = index
+    for index,elem in enumerate(sorszam_lista):
+        if index == max_nezoszam_indexe:
+            print("A ", elem, " sorszamu donton volt a maximalis ", max_nezoszam, " nezoszam.")
 
     print("==================================================")
 
