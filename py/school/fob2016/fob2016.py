@@ -15,7 +15,6 @@ def fob2016 (bemenet, mod):
     #print("Az indulok: ", indulok)
 
     print("Az indulok szama: ", len(indulok))
-    indulok.clear() # RAM sporolasi szempontbol toroljuk a listat
 
 
     no = 0
