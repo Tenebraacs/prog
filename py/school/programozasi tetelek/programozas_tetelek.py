@@ -145,7 +145,110 @@ def kivalasztas(lst):
     for index,elem in enumerate(lst):
     #minden pozitiv szam
         if elem > 0:
-            print("A lsitaban ", index," indexen all a pozitiv szam a lista ", elem,". helyen.")
+            print("A listaban ", index," indexen all a pozitiv szam a lista ", elem,". helyen.")
 
 kivalasztas(l)
+print("\n")
+
+# 5.) Kereses: Linearis vagy szekvencialis kereses neven is ismert, mivel vegig megyunk a tombon sorban.
+# ===========  Adott elem szerepel-e a tomben es hanyadik helyen.
+# ker = 21
+# i = 0
+# ciklus amig i<n es t[i]<>ker
+#   i = i + 1
+# ciklus vege
+#
+# Ha i<n akkor
+#   ki "Van ilyen"
+#   ki: "Indexe: ", i
+# kulonben
+#   ki: "A keresett ertek nem talalhato"
+# ha vege
+
+# algoritmus szerinti megoldas
+print("Kereses tetel\n=================")
+def kereses(lst, ker_ertek):
+    n = len(lst)
+    ker = ker_ertek
+
+    i = 0
+    while i < n and lst[i] != ker:
+        i = i + 1
+
+    if(i < n):
+        print("A keresett ertek:", ker, ",szerepel a listaban")
+        print("Indexe:", i, ", helye: ", i + 1)
+    else:
+        print("A keresett ertek", ker, ", nem szerepel a listaban.")
+
+kereses(l,21)
+print("\n")
+
+# 6.) Masolas: Egy sorozat elemeit atmasoljuk egy masik sorozatba, mikozben valamilyen atalakitast
+# ============ vegzunk az egyes elemeken.
+# ciklus i = 1 .. n
+#   b[i] = muvelet(a[i]) //valamilyen muvelet a[i]-vel
+# ciklus vege
+def masolas(lst):
+    hova = []
+
+    for i in lst:
+        hova.append(i*2)
+
+    print("Eredeti lista:", lst)
+    print("Masolt lista", hova)
+
+masolas(l)
+print("\n")
+
+# 7.) Kivalogatas: A tomb elemeit egy masik tombbe rakjuk, feltetelhez kotve
+# ================
+# j = 0
+# ciklus i = 0 .. n - 1
+#   ha a[i] < feltetel
+#       b[j] = a[i]
+#       j = j + 1
+#   ha vege
+# ciklus vege
+def kivalogatas(lst, valogatasi_ertek):
+    valogatott = []
+
+    for i in lst:
+        if i > valogatasi_ertek:
+            valogatott.append(i)
+
+    print("Eredeti lista:", lst)
+    print("A", valogatasi_ertek, "-tol nagyobb, kivalogatott lista;", valogatott)
+
+kivalogatas(l, 15)
+print("\n")
+
+# 8.) Szetvalogatas: Ket tombe valogatjuk szet egy tomb elemeit, valamely feltetel szerint
+# ==================
+# j = 0
+# k = 0
+# ciklus i = 0 .. n-1
+#   ha a[i] < feltetel
+#       b[j] = a[i]
+#       j = j + 1
+#   kulonben
+#       c[k] = a[i]
+#       k = k + 1
+#   ha vege
+# ciklus vege
+def szetvalogatas(lst, szetvalogatasi_ertek):
+    egyik = []
+    masik = []
+
+    for i in lst:
+        if i > szetvalogatasi_ertek:
+            egyik.append(i)
+        else:
+            masik.append(i)
+
+    print("Eredeti lista:", lst)
+    print("A", szetvalogatasi_ertek, "-tol nagyobb, kivalogatott lista:", egyik)
+    print("A", szetvalogatasi_ertek, "-tol kisebb, egyenlo, kivalogatott lista:", masik)
+
+szetvalogatas(l, 15)
 print("\n")
