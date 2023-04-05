@@ -20,10 +20,16 @@ class Masodfok:
         if self.a == 0:
             print("Az 'a' ertek nem lehet nulla!")
         else:
-            x1 = (-self.b + math.sqrt(self.b ** 2 - 4 * self.a * self.c)) / (2 * self.a)
-            x2 = (-self.b - math.sqrt(self.b ** 2 - 4 * self.a * self.c)) / (2 * self.a)
-            print("A megadott ertekek:", self.a, self.b, self.c, "(a,b,c)")
-            print("\nA gyokok: - x1:", x1, "\n          - x2:", x2)
+            d = self.b ** 2 - 4 * self.a * self.c
+            if d < 0:
+                print("Az egyenletnek nincs gyoke")
+            elif d == 0:
+                x = -self.b/(2*self.a)
+                print("Az egyenletnek egy gyoke van:", x)
+            else:
+                x1 = (-self.b + math.sqrt(self.b ** 2 - 4 * self.a * self.c)) / (2 * self.a)
+                x2 = (-self.b - math.sqrt(self.b ** 2 - 4 * self.a * self.c)) / (2 * self.a)
+                print("\nA gyokok: - x1:", x1, "\n          - x2:", x2)
 
 
 masodfok = Masodfok(2, 8, 6)
