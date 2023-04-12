@@ -6,7 +6,7 @@ import os
 os.system("cls")
 
 
-class teglalap:
+class Teglalap:
     def __init__(self, a, b):
         self.a = a
         self.b = b
@@ -22,6 +22,6 @@ class teglalap:
         print("A terulete:", ter)
 
 
-tegla = teglalap(7, 3)
+tegla = Teglalap(7, 3)
 tegla.kerulet()
 tegla.terulet()
