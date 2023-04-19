@@ -1,0 +1,6 @@
+2256;Málna;209
+3233.7;Barack;219
+759;Meggy;219
+0;Alma;239
+1561;Körte;319
+1602;Cseresznye;259
