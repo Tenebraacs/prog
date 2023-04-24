@@ -2,13 +2,14 @@ def tort(szamlalo, nevezo):
     if nevezo == 0:
         print("A nevezo nem lehet nulla!")
     else:
-        x = nevezo / szamlalo
+        x = szamlalo / nevezo
         if x > 1:
             print("Ez a tort nagyobb mint egy egesz.")
         elif x == 1:
             print("Ez a tort pontosan egy egesz.")
         else:
             print("Ez a tort kisebb mint egy egesz")
+
 
 szamlal = int(input("Kerem a szamalot: "))
 print("\n")
