@@ -1,0 +1,67 @@
+body{
+    background-image: url("../img/bg.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    border-top: 5px groove goldenrod;
+}
+
+.jumbotron h1 {
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 200;
+    font-size: 4rem;
+    text-decoration: underline overline;
+    text-transform: capitalize;
+    font-style: italic;
+    color: darkgoldenrod;
+    margin-top: 50px;
+    width: max-content;
+    background-color: rgba(00, 00, 00, 0.7);
+}
+
+
+.navbar {
+    background-color: goldenrod;
+}
+
+.nav-item {
+    font-size: x-large;
+    font-style: italic;
+    margin-right: 35px;
+}
+
+.row {
+    background-color: rgba(45, 255, 175, 0.8);
+    margin: auto auto;
+    border-bottom: 5px groove goldenrod;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+p {
+    line-height: 30px;
+    font-size: large;
+    text-align: justify;
+}
+
+.card {
+    width: 25rem;
+    margin: auto auto;
+    padding-bottom: 15px;
+    background-color: rgba(45, 255, 175, 0.8);
+}
+
+.card img{
+    min-height: 50%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+footer {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: rgba(45, 255, 175, 0.8);
+    border-bottom: 5px groove goldenrod;
+}
