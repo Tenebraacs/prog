@@ -8,30 +8,28 @@ class ItalRaktar:
         # print(adatok)
 
         # A termekek kulonvalogatasa:
-        termekek = [self.adatok[i] for i in range(1, len(self.adatok), 3)]
+        termekek = [adatok[i] for i in range(1, len(adatok), 3)]
         self.termekek = termekek
         # print(termekek)
 
         # A termekek mennyisegenek kulonvalogatasa
-        dl = [float(self.adatok[i]) for i in range(0, len(self.adatok), 3)]
+        dl = [float(adatok[i]) for i in range(0, len(adatok), 3)]
         self.dl = dl
         # print(dl)
 
         # Az ar kulonvalogatasa, atlag kiszamitasa
-        ar = [float(self.adatok[i]) for i in range(2, len(self.adatok), 3)]
+        ar = [float(adatok[i]) for i in range(2, len(adatok), 3)]
         self.ar = ar
         # print(ar)
-        atlag_ossz = 0
-        for x in ar:
-            atlag_ossz += x
-        self.atlag = atlag_ossz / len(self.termekek)
+        atlag_ossz = sum(ar)
+        self.atlag = atlag_ossz / len(termekek)
         # print(self.atlag)
 
     def termek_szam(self):
         print("\nA termekek szama:", len(self.termekek))
 
     def legtobb_termek(self):
-        legtobb = [-1, 0]
+        legtobb = [0, 0]  # Az elso az index a masodik a legnagyobb mennyiseg
         for i, mennyiseg in enumerate(self.dl):
             if mennyiseg > legtobb[1]:
                 legtobb = [i, mennyiseg]
@@ -43,11 +41,8 @@ class ItalRaktar:
     def keszlet_ertek(self):
         keszlet_ertek = 0
         for dl, ar in zip(self.dl, self.ar):
-            if dl == 0:
-                pass
-            else:
-                keszlet_ertek += ar * dl
-        print("\nA keszlet erteke:", "{:.2f}".format(keszlet_ertek / 1000000), "millio forint")
+            keszlet_ertek += ar * dl
+        print("\nA keszlet erteke:", round(keszlet_ertek / 1000000, 2), "millio forint")
 
     def atlag_feletti(self):
         print("\nAz atlag aron feluli termekek:")

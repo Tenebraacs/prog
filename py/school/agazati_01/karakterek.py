@@ -4,26 +4,20 @@ def karakterek(lista):
     else:
         legtobb = [0, 0]  # 1. az index, 2. a karakter szam
         for i, x in enumerate(lista):
-            szoveg = x
-            karaktr_szam = 0
-            for _ in szoveg:
-                karaktr_szam += 1
-            if karaktr_szam > legtobb[1]:
-                legtobb = [i, karaktr_szam]
+            if len(x) > legtobb[1]:
+                legtobb = [i, len(x)]
         return legtobb
 
 
-ext = True
-karaktr = []
-
 print("Adjon meg egy mondatot vagy szot. Az ENTER gomb lenyomasaval lephet tovabb.")
 
-while ext:
+karaktr = []
+while True:
     temp = input("Szoveg:")
-    if temp == "":
-        ext = False
-    else:
+    if temp != "":
         karaktr.append(temp)
+    else:
+        break
 
 if karakterek(karaktr) is None:
     print("\nNem adott meg semmit!")
