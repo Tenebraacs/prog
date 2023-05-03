@@ -5,6 +5,7 @@ body{
 }
 
 header {
+    padding-bottom: 350px;
     border-top: 5px groove goldenrod;
     background-image: url(../img/header.jpg);
     background-size: cover;
@@ -54,6 +55,8 @@ p {
     margin: auto auto;
     padding-bottom: 15px;
     background-color: rgba(45, 255, 175, 0.8);
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .card img{
@@ -67,4 +70,9 @@ footer {
     padding-bottom: 25px;
     background-color: rgba(45, 255, 175, 0.8);
     border-bottom: 5px groove goldenrod;
+}
+
+h1 {
+    color: darkgoldenrod;
+    margin-left: 25px;
 }
