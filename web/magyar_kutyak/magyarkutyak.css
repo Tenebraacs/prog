@@ -1,0 +1,32 @@
+body {
+    width: 960px;
+    margin: auto;
+    background-color: chocolate;
+}
+
+h1 {
+    text-decoration: underline 2px brown;
+}
+
+ul {
+    list-style-type: none; 
+  }
+  
+  li {
+    display: inline-block; 
+    min-width: 50px; 
+    padding: 6px;
+    border-right: 2px solid #a52a2a;
+    color: white;
+  }
+
+.hasab {
+    max-width: 480px;
+    float: left;
+}
+
+
+footer {
+
+
+}
