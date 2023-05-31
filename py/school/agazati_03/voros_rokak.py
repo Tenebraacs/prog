@@ -61,40 +61,42 @@ class KosarlabdaMerkozesek:
                 napok.append(nap)
 
         rendezes = []
-        for otthon, nap, ar in zip(self.otthon, self.nap_sorszam, self.ar):
+        for otthon, (i, nap), ar in zip(self.otthon, enumerate(self.nap_sorszam), self.ar):
             if otthon == "Computerbontok":
-                temp = [ar, nap]
+                temp = [ar, nap, i]
                 rendezes.append(temp)
             if otthon == "Bohocok":
-                temp = [ar, nap]
+                temp = [ar, nap, i]
                 rendezes.append(temp)
         rendezes.sort()
-        for ar, nap in rendezes:
+
+        nap_index = []
+        for ar, nap, i in rendezes:
             penz -= ar
             if penz <= 0:
                 penz += ar
                 break
             napok.append(nap)
-
+            nap_index.append(i)
         napok.sort()
-        """
+
         for i, nap in enumerate(napok):
             if nap == napok[i+1]:
                 napok.pop(i+1)
-        """
+
         napok_string = ""
         for x in napok:
             napok_string += str(x) + " "
-        return napok_string, napok
+        return napok_string, nap_index
 
     def kedvenc_csapatok(self):
-        napok = self.jegyvasarlas_napok()[1]
+        nap_index = self.jegyvasarlas_napok()[1]
         rokak, bontok, bohocok = 0, 0, 0
         tobbiek = ["Computerbontok", "Bohocok"]
-        for otthon, vendeg, nap in zip(self.otthon, self.vendeg, self.nap_sorszam):
+        for otthon, vendeg, (i, nap) in zip(self.otthon, self.vendeg, enumerate(self.nap_sorszam)):
             if otthon == "Voros_Rokak" or vendeg == "Voros_Rokak":
                 rokak += 1
-            if otthon in tobbiek and nap in napok:
+            if i in nap_index:
                 if otthon == "Bohocok":
                     bontok += 1
                 if otthon == "Computerbontok":
