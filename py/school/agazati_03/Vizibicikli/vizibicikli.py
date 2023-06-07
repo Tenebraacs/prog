@@ -1,85 +1,157 @@
-# 1. feladat
-with open('vizdat.csv') as fajl:
-    forras = fajl.read().splitlines()
-adatok = [sor.split(';') for sor in forras]
+def beolvas_allomany(file_nev):
+    adatok = []
+    with open(file_nev) as file:
+        sorok = file.read().splitlines()
+        for sor in sorok:
+            adatok.append(sor.split(';'))
+    return adatok
 
-# 2. feladat
-print('2. feladat')
-nev = input('Kérek egy nevet: ')
-lista = [adat[2]+':'+adat[3]+'-'+adat[4]+':'+adat[5] for adat in adatok if adat[0]==nev]
-print('Kölcsönzött: '+', '.join(lista) if lista else 'Nem volt ilyen nevű kölcsönző!')
 
-# 3. feladat
-print('\n3. feladat')
-idopont = input('Kérek egy időpontot (óra:perc): ')
-ido = int(idopont.split(':')[0])*60+int(idopont.split(':')[1])
-lista = [adat[1]+', '+adat[0] for adat in adatok if int(adat[2])*60+int(adat[3])<=ido<=int(adat[4])*60+int(adat[5])]
-print('Kikölcsönzött járművek: '+'; '.join(lista))
+def keres_nev(adatok):
+    keresett_nev = input('Kérem a kölcsönző nevét: ')
+    talalat = False
+    for adat in adatok:
+        nev = adat[0]
+        if nev == keresett_nev:
+            talalat = True
+            elvitel_ora = adat[2]
+            elvitel_perc = adat[3]
+            visszahoz_ora = adat[4]
+            visszahoz_perc = adat[5]
+            print(
+                f'{nev} aznap {elvitel_ora}:{elvitel_perc} - {visszahoz_ora}:{visszahoz_perc} között vette igénybe a kölcsönző szolgáltatásait.')
+    if not talalat:
+        print('Nem volt ilyen nevű kölcsönző!')
 
-# 4. feladat
-osszeg = 0
-dijak = []  # érdemes összegyűjteni jármű-díj párosokat, az 5. feladatban kelleni fog
-for adat in adatok:
-    perc = int(adat[4])*60+int(adat[5]) - (int(adat[2])*60+int(adat[3]))
-    if perc % 30 == 0:
-        dij = 1500*(perc//30)
+
+def keres_idopont(adatok):
+    ora_perc = input('Kérem az időpontot óra:perc formátumban: ')
+    ora, perc = ora_perc.split(':')
+    ora = int(ora)
+    perc = int(perc)
+    jarmuvek = []
+    for adat in adatok:
+        elvitel_ora = int(adat[2])
+        elvitel_perc = int(adat[3])
+        visszahoz_ora = int(adat[4])
+        visszahoz_perc = int(adat[5])
+        if (elvitel_ora < ora or (elvitel_ora == ora and elvitel_perc <= perc)) and (
+                visszahoz_ora > ora or (visszahoz_ora == ora and visszahoz_perc >= perc)):
+            jarmuvek.append(adat[1])
+    if len(jarmuvek) > 0:
+        print(f'A(z) {ora}:{perc} időpontban vízen voltak a következő járművek: {", ".join(jarmuvek)}.')
     else:
-        dij = 1500*((perc//30)+1)
-    osszeg += dij
-    dijak.append([adat[1], dij])
-#print(adat[1], perc, perc//30, perc%30, dij, osszeg)
-print('\n4. feladat\nBevétel:', osszeg, 'Ft.')
+        print(f'A(z) {ora}:{perc} időpontban nem voltak járművek vízen.')
 
-# 5. feladat
-print('\n5. feladat')
-jarmuvek_lista = [adat[1] for adat in adatok]
-jarmuvek = list(set(jarmuvek_lista))  # csak a járművek listája; az ABC kiírás miatt kell lista, hogy rendezhető legyen
-jarmuvek.sort()
-lista = [jarmu+' – '+str(jarmuvek_lista.count(jarmu)) for jarmu in jarmuvek]
-print('\n'.join(lista))
 
-# 6. feladat
-print('\n6. feladat')
-osszegek = []  # jármű, összeg
-for jarmu in jarmuvek:
-    osszeg = sum(dij[1] for dij in dijak if dij[0] == jarmu)
-    osszegek.append([jarmu, osszeg])
-max_osszeg = max([osszeg[1] for osszeg in osszegek])
-lista = [osszeg[0] for osszeg in osszegek if osszeg[1] == max_osszeg]  # csak a legtöbbet fizetett járművek és összeg
-print('Fizetett idő:', (max_osszeg/1500)/2, 'óra, járművek:', ', '.join(lista))
+def napi_bevetel(adatok):
+    bevetelek = {}
+    for adat in adatok:
+        elvitel_ora = int(adat[2])
+        elvitel_perc = int(adat[3])
+        visszahoz_ora = int(adat[4])
+        visszahoz_perc = int(adat[5])
+        ido = (visszahoz_ora * 60 + visszahoz_perc) - (elvitel_ora * 60 + elvitel_perc)
+        if ido > 0:
+            felperc_ar = 1500 / 30
+            fizetendo = int(ido / 30) * 1500
+            if ido % 30 != 0:
+                fizetendo += felperc_ar
+            if adat[1] in bevetelek:
+                bevetelek[adat[1]] += fizetendo
+            else:
+                bevetelek[adat[1]] = fizetendo
+    osszeg = sum(bevetelek.values())
+    print(f'A napi bevétel: {osszeg} Ft.')
 
-# 7. feladat
-idok = [[int(adat[2])*60+int(adat[3]), int(adat[4])*60+int(adat[5])] for adat in adatok]  # jármű,kivisz,behoz
-kezd = min(ido[0] for ido in idok)  # legelső kivitel
-vege = max(ido[1] for ido in idok)  # legutolsó visszahozatal
-#print(idok, kezd, vege)
-kint = []
-jo_percek = []  # azok a percek, amíg az összes jármű kint volt
-for perc in range(kezd, vege):  # megnézzük, hogy minden percben hány jármű van kint
-    hanyban = 0
-    for ido in idok:
-        if ido[0] <= perc <= ido[1]:
-            hanyban += 1
-    #print(perc, hanyban)
-    if hanyban == len(jarmuvek):
-        jo_percek.append(perc)
-#print(jo_percek)
-jo_idok = [jo_percek[0]]  # első időpont; a jo idok csak a jó perceket tartalmazzák
-for index1 in range(1, len(jo_percek)-1):
-    if jo_percek[index1] != jo_percek[index1-1]+1 or jo_percek[index1] != jo_percek[index1+1]-1:
-        jo_idok.append(jo_percek[index1])
-jo_idok.append(jo_percek[-1])  # utolsó időpont
-#print(jo_idok)
-kiir = [str(perc//60)+', '+str(perc%60) for perc in jo_idok]
-print('\n7. feladat\nAz összes kint van:', ', '.join(kiir))
 
-# 8. feladat
-for adat in adatok:  # kellenek a bevezető nullák is, ha nincsenek
-    for i in range(2, 6):
-        if len(adat[i]) == 1:
-            adat[i] = '0' + adat[i]
-f_jarmu = [adat[2]+':'+adat[3]+'-'+adat[4]+':'+adat[5]+' : '+adat[0] for adat in adatok if adat[1] == 'F']
-fajl = open('fjarmu.txt', 'w')
-print('\n'.join(f_jarmu), file=fajl)
-fajl.close()
-print('\n8. feladat\nA fájl írása megtörtént.')
+def kolcsonzes_gyakorisag(adatok):
+    kolcsonzesek = {}
+    for adat in adatok:
+        if adat[1] in kolcsonzesek:
+            kolcsonzesek[adat[1]] += 1
+        else:
+            kolcsonzesek[adat[1]] = 1
+    for k, v in kolcsonzesek.items():
+        print(f'{k} járművet {v} alkalommal kölcsönözték ki aznap.')
+
+
+def legnagyobb_dij(adatok):
+    legnagyobb_dij = 0
+    legnagyobb_jarmu = []
+    for adat in adatok:
+        elvitel_ora = int(adat[2])
+        elvitel_perc = int(adat[3])
+        visszahoz_ora = int(adat[4])
+        visszahoz_perc = int(adat[5])
+        ido = (visszahoz_ora * 60 + visszahoz_perc) - (elvitel_ora * 60 + elvitel_perc)
+        if ido > 0:
+            felperc_ar = 1500 / 30
+            fizetendo = int(ido / 30) * 1500
+            if ido % 30 != 0:
+                fizetendo += felperc_ar
+            if fizetendo > legnagyobb_dij:
+                legnagyobb_dij = fizetendo
+                legnagyobb_jarmu = [adat[1]]
+            elif fizetendo == legnagyobb_dij:
+                legnagyobb_jarmu.append(adat[1])
+    for jarmu in legnagyobb_jarmu:
+        print(f'A legnagyobb kölcsönzési díjat ({legnagyobb_dij} Ft) a(z) {jarmu} jármű után fizették.')
+
+
+def keres_hianyzo_idopontok(adatok):
+    idopontok = []
+    for adat in adatok:
+        elvitel_ora = int(adat[2])
+        elvitel_perc = int(adat[3])
+        visszahoz_ora = int(adat[4])
+        visszahoz_perc = int(adat[5])
+        idopontok.append((elvitel_ora, elvitel_perc))
+        idopontok.append((visszahoz_ora, visszahoz_perc))
+    idopontok.sort()
+    hianyzo_idopontok = []
+    for i in range(len(idopontok) - 1):
+        kezdo_ora, kezdo_perc = idopontok[i]
+        veg_ora, veg_perc = idopontok[i + 1]
+        if veg_ora > kezdo_ora or (veg_ora == kezdo_ora and veg_perc - kezdo_perc > 30):
+            hianyzo_idopontok.append((kezdo_ora, kezdo_perc, veg_ora, veg_perc))
+    for idopont in hianyzo_idopontok:
+        print(f'{idopont[0]}:{idopont[1]} - {idopont[2]}:{idopont[3]}')
+
+
+def rongalas_jelentes(adatok):
+    rongalasok = {}
+    for adat in adatok:
+        if adat[1] == 'FF':
+            elvitel_ora = int(adat[2])
+            elvitel_perc = int(adat[3])
+            visszahoz_ora = int(adat[4])
+            visszahoz_perc = int(adat[5])
+            rongalasok[adat[0]] = f'{elvitel_ora}:{elvitel_perc}-{visszahoz_ora}:{visszahoz_perc}'
+    with open('fjarmu.txt', 'w') as file:
+        for nev, idoszak in rongalasok.items():
+            file.write(f'{idoszak} : {nev}\n')
+
+
+adatok = beolvas_allomany('vizdat.csv')
+
+# Feladat 2
+keres_nev(adatok)
+
+# Feladat 3
+keres_idopont(adatok)
+
+# Feladat 4
+napi_bevetel(adatok)
+
+# Feladat 5
+kolcsonzes_gyakorisag(adatok)
+
+# Feladat 6
+legnagyobb_dij(adatok)
+
+# Feladat 7
+keres_hianyzo_idopontok(adatok)
+
+# Feladat 8
+rongalas_jelentes(adatok)
