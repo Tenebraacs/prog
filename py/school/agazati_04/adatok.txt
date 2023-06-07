@@ -1,0 +1,9 @@
+189;Zeller;549
+518;Burgonya;342
+1200;Tojás;58
+426;Hagyma;218
+200;Paradicsom;615
+98;Paprika;440
+68;Répa;299
+78;Gyökér zöldség;552
+52;Gomba;476
